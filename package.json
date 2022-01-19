@@ -1,0 +1,14 @@
+{
+  "name": "Youtube_simplified",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/RafaelBortolozo/Youtube_simplified.git",
+  "author": "Rafael Bortolozo <rafaelbortolozo@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^16.0.7"
+  }
+}
