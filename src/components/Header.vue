@@ -1,10 +1,7 @@
 <template lang="pt-BR">
     <header>
       <div class="youtube">
-        <a href="#">
-          <img src="../assets/youtube_47.png">
-          <h3>Lite</h3>
-        </a>
+         <a href="#"><img src="../assets/mini_youtube_hd.png"></a>
       </div>
       <div class="searchBar">
         <input type="text" placeholder="Search">
@@ -19,8 +16,8 @@
 </template>
 <script>
 export default {
-  name: 'Header',
-}
+  name: "Header",
+};
 </script>
 
 <style scoped>
@@ -28,18 +25,18 @@ header {
   background-color: rgb(32, 32, 32);
   color: white;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   padding: 7px 0;
 }
 
-header .youtube a {
-  display: flex;
-  align-items: flex-end;
+header .youtube img {
+  width: 65%;
 }
 
 header .searchBar {
   display: flex;
+  width: 30%;
 }
 
 header .searchBar input {
