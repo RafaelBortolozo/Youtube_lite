@@ -1,6 +1,6 @@
 <template>
-  <div id="login">
-      <button @click="googleSignIn">{{googleText}}</button>
+  <div class="login" v-on:click="googleSignIn()">
+    <button>{{ googleText }}</button>
   </div>
 </template>
 
@@ -18,23 +18,36 @@ export default {
   },
   methods: {
       googleSignIn: function() {
-          initializeApp(firebaseConfig)
-          const provider = new GoogleAuthProvider()
-          const auth = getAuth()
-          signInWithPopup(auth, provider).then((result) => {
-              //const credential = GoogleAuthProvider.credentialFromResult(result)
-              //const token = credential.accessToken
-              const user = result.user
-              this.googleText = user
-              
-          }).catch((error) => {
-              const errorCode = error.code
-              const errorMessage = error.message
-              const email = error.email
-              const credential = GoogleAuthProvider.credentialFromError(error)
-              console.log(errorCode, errorMessage, email, credential)
-          })
+          try {
+            initializeApp(firebaseConfig)
+            const provider = new GoogleAuthProvider()
+            const auth = getAuth()
+            signInWithPopup(auth, provider).then((result) => {
+                //const credential = GoogleAuthProvider.credentialFromResult(result)
+                //const token = credential.accessToken
+                const user = result.user
+                this.googleText = `Bem-vindo ${user.displayName}`
+                console.log(user)
+                
+            }).catch((error) => {
+                console.log(error)
+          })}catch(err) {
+            console.log(err)
+          }
       }
   }
 };
 </script>
+
+<style>
+  .login {
+    background-color: red;
+    border-radius: 50px;
+  }
+  button {
+    border: none;
+    padding: 7px;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+</style>
