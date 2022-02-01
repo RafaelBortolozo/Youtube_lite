@@ -7,16 +7,18 @@
         <input type="text" placeholder="Search">
         <a href="#"><img src="../assets/search_32.png"></a>
       </div>
-      <div class="accountGoogle">
-        <a href="#">
-          <p>accountGoogle</p>
-        </a>
-      </div>
+      <LoginGoogle/>
     </header>
 </template>
+
 <script>
+import LoginGoogle from './LoginGoogle.vue'
+
 export default {
   name: "Header",
+  components: {
+    LoginGoogle
+  }
 };
 </script>
 
