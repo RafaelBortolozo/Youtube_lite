@@ -11,7 +11,7 @@
           <input type="text" placeholder="Search">
           <a href="#"><img src="../assets/search_32.png"></a>
         </div>
-        <LoginGoogle/>
+        <LoginGoogle v-on:loggedState="setLoggedState"/>
       </div>
     </header>
 </template>
@@ -21,9 +21,22 @@ import LoginGoogle from "./LoginGoogle.vue";
 
 export default {
   name: "Header",
+  data() {
+    return {
+      loggedState: false
+    }
+  },
   components: {
     LoginGoogle,
   },
+  methods: {
+    setLoggedState(response){
+      this.loggedState = response.loggedState
+      this.$emit("loggedState", {
+        loggedState: this.loggedState
+      })
+    }
+  }
 };
 </script>
 
