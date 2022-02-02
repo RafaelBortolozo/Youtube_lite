@@ -1,6 +1,6 @@
 <template>
   <div class="login" v-on:click="googleSignIn()">
-    <button>{{ googleText }}</button>
+    <button>{{ textButton }}</button>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   name: "LoginGoogle",
   data() {
     return {
-      googleText: "Fazer login",
+      textButton: "Fazer login",
       loggedState: false,
     };
   },
@@ -25,21 +25,21 @@ export default {
         const auth = getAuth();
         signInWithPopup(auth, provider)
           .then((result) => {
-            this.googleText = `Bem-vindo ${result.user.displayName}`;
+            this.textButton = `Bem-vindo ${result.user.displayName} :)`;
             this.loggedState = true
             this.$emit("loggedState", {
               loggedState: this.loggedState
             });
           })
           .catch(() => {
-            this.googleText = "Login not worked, try again";
+            this.textButton = "Login not worked, try again";
             this.loggedState = false
             this.$emit("loggedState", {
               loggedState: this.loggedState,
             });
           });
       } catch {
-        this.googleText = "Login not worked, try again";
+        this.textButton = "Login not worked, try again";
         this.loggedState = false
         this.$emit("loggedState", {
           loggedState: this.loggedState,
