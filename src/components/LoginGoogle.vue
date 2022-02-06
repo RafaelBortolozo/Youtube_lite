@@ -25,23 +25,24 @@ export default {
         const auth = getAuth();
         signInWithPopup(auth, provider)
           .then((result) => {
-            this.textButton = `Bem-vindo ${result.user.displayName} :)`;
+            this.textButton = `Bem-vindo ${result.user.displayName}`;
             this.loggedState = true
-            this.$emit("loggedState", {
-              loggedState: this.loggedState
+            this.$emit("loginResult", {
+              loggedState: this.loggedState,
+              loginResult: result
             });
           })
           .catch(() => {
             this.textButton = "Login not worked, try again";
             this.loggedState = false
-            this.$emit("loggedState", {
+            this.$emit("loginResult", {
               loggedState: this.loggedState,
             });
           });
       } catch {
         this.textButton = "Login not worked, try again";
         this.loggedState = false
-        this.$emit("loggedState", {
+        this.$emit("loginResult", {
           loggedState: this.loggedState,
         });
       }
