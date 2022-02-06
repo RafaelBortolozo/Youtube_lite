@@ -1,31 +1,39 @@
 <template>
-  <Header v-on:loginResult="setLoginResult" />
+  <Header v-on:loginResult="setLoginResult" v-on:searchVideos="setSearchVideos" />
   <div class="content">
-    <div class="logged" v-if="loggedState">
-      <SubsVideos/>
+    <div class="searchVideos" v-if="inputTextSearch != ''">
+      <SearchVideos :title="inputTextSearch" />
     </div>
+    <!-- <div class="logged" v-else-if="loggedState">
+      <SubsVideos/>
+    </div> -->
     <div class=unlogged v-else>
       <h3>{{ unloggedMessage }}</h3>
     </div>
+    
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
-import SubsVideos from "./components/SubsVideos.vue";
+//import SubsVideos from "./components/SubsVideos.vue";
+import SearchVideos from "./components/SearchVideos.vue"
 
 export default { 
   name: "App",
   data() {
     return {
       loggedState: false,
+      searchState: false,
+      inputTextSearch: '',
       unloggedMessage: 'O YouTube Lite precisa se conectar com a conta do Google para exibir videos da aba "Inscrições"',
       loginResult: {}
     };
   },
   components: {
     Header,
-    SubsVideos
+    //SubsVideos,
+    SearchVideos
   },
   methods: {
     setLoginResult(response) {
@@ -33,6 +41,10 @@ export default {
       this.loginResult = response.loginResult;
       console.log(response)
     },
+    setSearchVideos(response) {
+      this.searchState = true
+      this.inputTextSearch = response.inputTextSearch
+    }
   },
 };
 </script>
