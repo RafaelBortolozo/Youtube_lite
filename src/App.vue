@@ -1,8 +1,8 @@
 <template>
-  <Header v-on:loggedState="setLoggedState" />
+  <Header v-on:loginResult="setLoginResult" />
   <div class="content">
     <div class="logged" v-if="loggedState">
-      <h1>{{ loggedState }}</h1>
+      <SubsVideos/>
     </div>
     <div class=unlogged v-else>
       <h3>{{ unloggedMessage }}</h3>
@@ -12,21 +12,26 @@
 
 <script>
 import Header from "./components/Header.vue";
+import SubsVideos from "./components/SubsVideos.vue";
 
-export default {
+export default { 
   name: "App",
   data() {
     return {
       loggedState: false,
       unloggedMessage: 'O YouTube Lite precisa se conectar com a conta do Google para exibir videos da aba "Inscrições"',
+      loginResult: {}
     };
   },
   components: {
     Header,
+    SubsVideos
   },
   methods: {
-    setLoggedState(response) {
+    setLoginResult(response) {
       this.loggedState = response.loggedState;
+      this.loginResult = response.loginResult;
+      console.log(response)
     },
   },
 };
