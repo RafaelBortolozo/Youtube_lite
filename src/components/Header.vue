@@ -18,8 +18,6 @@
 
 <script>
 import LoginGoogle from "./LoginGoogle.vue";
-import axios from "axios";
-import firebaseConfig from "../scripts/firebaseConfig.js";
 
 export default {
   name: "Header",
@@ -38,24 +36,11 @@ export default {
         loginResult: response.loginResult,
       });
     },
-
-    async searchVideos() {
-      const part = "snippet";
-      const API_KEY = firebaseConfig.apiKey;
-      const maxResults = 25;
-      const url = `https://www.googleapis.com/youtube/v3/search?part=${part}&key=${API_KEY}&maxResults=${maxResults}&q=${this.inputTextSearch}`;
-      if (this.inputTextSearch) {
-        axios({
-          method: "get",
-          url: url,
-        }).then((result) => {
-          this.$emit("resultSearchBar", {
-            resultSearchBar: result.data.items
-          })
-          console.log(this.videos);
-        });
-      }
-    },
+    searchVideos(){
+      this.$emit("searchVideos", {
+        inputTextSearch: this.inputTextSearch
+      });
+    }
   },
 };
 </script> 
