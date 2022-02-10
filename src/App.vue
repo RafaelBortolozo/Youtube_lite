@@ -1,6 +1,10 @@
 <template>
-  <Header v-on:loginResult="setLoginResult" v-on:searchVideos="setSearchVideos" />
+  <Header
+    v-on:loginResult="setLoginResult"
+    v-on:searchVideos="setSearchVideos"
+  />
   <div class="content">
+    <router-view />
     <div class="searchVideos" v-if="inputTextSearch != ''">
       <SearchVideos :title="inputTextSearch" />
     </div>
@@ -10,41 +14,41 @@
     <div class=unlogged v-else>
       <h3>{{ unloggedMessage }}</h3>
     </div>
-    
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
+import { mapState } from "vuex";
 //import SubsVideos from "./components/SubsVideos.vue";
-import SearchVideos from "./components/SearchVideos.vue"
+//import SearchVideos from "./components/SearchVideos.vue"
 
-export default { 
+export default {
   name: "App",
-  data() {
-    return {
-      loggedState: false,
-      searchState: false,
-      inputTextSearch: '',
-      unloggedMessage: 'O YouTube Lite precisa se conectar com a conta do Google para exibir videos da aba "Inscrições"',
-      loginResult: {}
-    };
+  computed: {
+    ...mapState({
+      loggedState: state => state.loggedState,
+      searchState: state => state.searchState,
+      inputTextSearch: state => state.inputTextSearch,
+      unloggedMessage: state => state.unloggedMessage,
+      loginResult: state => state.loginResult
+    }),
   },
   components: {
     Header,
     //SubsVideos,
-    SearchVideos
+    //SearchVideos
   },
   methods: {
     setLoginResult(response) {
       this.loggedState = response.loggedState;
       this.loginResult = response.loginResult;
-      console.log(response)
+      console.log(response);
     },
     setSearchVideos(response) {
-      this.searchState = true
-      this.inputTextSearch = response.inputTextSearch
-    }
+      this.searchState = true;
+      this.inputTextSearch = response.inputTextSearch;
+    },
   },
 };
 </script>
@@ -98,5 +102,4 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 }
-
 </style>

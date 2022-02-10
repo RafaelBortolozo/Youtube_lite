@@ -16,6 +16,7 @@ export default {
     return {
       buttonText: "Atualizar lista",
       videos: [],
+      breakRequest: false
     };
   },
   components: {
@@ -47,7 +48,7 @@ export default {
       }
     }
   },
-};
+}
 </script>
 
 <style>

@@ -1,20 +1,17 @@
-import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-Vue.use(VueRouter)
+import Player from '../components/Player.vue'
+import SubsVideos from '../components/SubsVideos.vue'
+import SearchVideos from '../components/SearchVideos.vue'
 
 const routes = [
-    {
-      path: '/player',
-      name: 'player',
-      component: player
-    },
+    { path: '/player', component: Player },
+    { path: '/subs', component: SubsVideos },
+    { path: '/search', component: SearchVideos }
 ]
 
-const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes
-  })
-  
-  export default router
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHashHistory(),
+  routes
+})
+
+export default router
