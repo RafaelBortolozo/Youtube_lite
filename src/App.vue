@@ -74,6 +74,14 @@ h1 {
   justify-content: center;
 }
 
+.content > div {
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .unlogged {
   text-align: center;
 }

@@ -29,11 +29,13 @@ export default {
   },
   methods: {
     async searchVideos() {
-      this.videos = []
+      this.videos = [];
+      const link_api = "https://www.googleapis.com/youtube/v3/search?"
       const part = "snippet";
       const API_KEY = firebaseConfig.apiKey;
       const maxResults = 25;
-      const url = `https://www.googleapis.com/youtube/v3/search?part=${part}&key=${API_KEY}&maxResults=${maxResults}&q=${this.title}`;
+      const type = 'video';
+      const url = `${link_api}part=${part}&key=${API_KEY}&maxResults=${maxResults}&q=${this.title}&type=${type}`;
       if (this.title) {
         axios({
           method: "get",
@@ -49,10 +51,15 @@ export default {
 </script>
 
 <style>
-button {
-  border: none;
-  padding: 7px;
-  border-radius: 50px;
-  cursor: pointer;
-}
+    button {
+    border: none;
+    padding: 7px;
+    border-radius: 50px;
+    cursor: pointer;
+    }
+
+    .videos {
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
