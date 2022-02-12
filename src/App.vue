@@ -5,35 +5,32 @@
   />
   <div class="content">
     <router-view />
-    <div class="searchVideos" v-if="inputTextSearch != ''">
+    <!-- <div class="searchVideos" v-if="inputTextSearch != ''">
       <SearchVideos :title="inputTextSearch" />
-    </div>
+    </div> -->
     <!-- <div class="logged" v-else-if="loggedState">
       <SubsVideos/>
     </div> -->
-    <div class=unlogged v-else>
-      <h3>{{ unloggedMessage }}</h3>
-    </div>
+    
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
-import { mapState } from "vuex";
+//import { mapState } from "vuex";
 //import SubsVideos from "./components/SubsVideos.vue";
 //import SearchVideos from "./components/SearchVideos.vue"
 
 export default {
   name: "App",
-  computed: {
-    ...mapState({
-      loggedState: state => state.loggedState,
-      searchState: state => state.searchState,
-      inputTextSearch: state => state.inputTextSearch,
-      unloggedMessage: state => state.unloggedMessage,
-      loginResult: state => state.loginResult
-    }),
-  },
+  // computed: {
+  //   ...mapState({
+  //     loggedState: state => state.loggedState,
+  //     searchState: state => state.searchState,
+  //     inputTextSearch: state => state.inputTextSearch,
+  //     loginResult: state => state.loginResult
+  //   }),
+  // },
   components: {
     Header,
     //SubsVideos,
@@ -82,23 +79,6 @@ h1 {
   width: 70%;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.unlogged {
-  text-align: center;
-}
-
-.unlogged h3 {
-  user-select: none;
-  position: relative;
-  top: 35vh;
-  font-family: Arial;
-  line-height: 150%;
-  color: rgb(133, 133, 133);
-  min-width: 40%;
-  max-width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
